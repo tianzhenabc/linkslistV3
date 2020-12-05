@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="content-type" content="text/html;charset=utf-8">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/index.css}" />
+    <title>通讯录管理系统</title>
+</head>
+<body>
+<h1 align="center">个人通讯录管理系统</h1>
+
+<div class="main_box">
+
+    <div align="right">
+        <button onclick="add()" type="button">添加</button>
+        <button onclick="Logout()" type="button">退出</button>
+    </div>
+</div>
+
+<div class="main_box" >
+
+    <table id="myTable" class="TableSort">
+        <thead>
+            <tr>
+                <th class="header">编号ID</th>
+                <th class="header">姓名</th>
+                <th class="header">性别</th>
+                <th class="header">手机</th>
+                <th class="header">邮箱</th>
+                <th class="header">地址</th>
+                <th class="header">操作</th>
+            </tr>
+        </thead>
+    <tbody>
+        <tr th:each="man:${links}">
+            <td align="center" th:text="${man.getLinkid()}"> 1</td>
+            <td th:text="${man.getName()}">李林</td>
+            <td th:text="${man.getGender()==1?'男':'女'}">男</td>
+            <td th:text="${man.getTel()}">111111</td>
+            <td th:text="${man.getEmail()}">22222222@qq.com</td>
+            <td th:text="${man.getAddress()}">北京</td>
+            <td>
+                <div align="center">
+                    <a class="sel_btn" th:href="@{/editLink/}+${man.getLinkid()}">编辑</a>
+                    <a class="sel_btn" th:href="@{/deleteLink/}+${man.getLinkid()}">删除</a>
+                </div>
+
+            </td>
+        </tr>
+
+    </tbody>
+    </table>
+
+
+</div>
+</body>
+
+<script>
+
+    function Logout(){
+        window.location.href="logout";
+    }
+    function add(){
+        window.location.href="addLink";
+    }
+
+</script>
+</html>
